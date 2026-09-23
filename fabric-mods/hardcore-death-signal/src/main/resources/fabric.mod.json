@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "hardcore-death-signal",
+  "version": "${version}",
+  "name": "HardcoreDeathSignal",
+  "description": "Server-side sensor only: detects a real player death and writes one event file to a local spool. Never switches, recycles, or touches Velocity itself - see ARCHITECTURE.md.",
+  "authors": ["HardcoreSeamless"],
+  "environment": "server",
+  "entrypoints": {
+    "main": [
+      "com.hardcoreseamless.deathsignal.HardcoreDeathSignalMod"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "minecraft": "1.20.1",
+    "fabric-api": "*"
+  }
+}

@@ -1,0 +1,145 @@
+# --- Java ---
+*.class
+*.hprof
+hs_err_pid*.log
+
+# --- Local JDK/JRE/build-tool installs (downloaded binaries, not versioned — see VERSION_LOCK.md) ---
+tools/java17/
+tools/java25/
+tools/gradle/
+tools/*.zip
+tools/*.msi
+
+# --- Minecraft / Fabric runtime data (per-backend, regenerated on start) ---
+server-a/world/
+server-a/world_nether/
+server-a/world_the_end/
+server-a/runtime/
+server-a/logs/
+server-a/crash-reports/
+server-a/*.log
+server-a/*.log.gz
+server-a/*.lock
+server-a/session.lock
+server-a/usercache.json
+server-a/eula.txt
+server-a/ops.json
+server-a/banned-players.json
+server-a/banned-ips.json
+server-a/whitelist.json
+
+server-b/world/
+server-b/world_nether/
+server-b/world_the_end/
+server-b/runtime/
+server-b/logs/
+server-b/crash-reports/
+server-b/*.log
+server-b/*.log.gz
+server-b/*.lock
+server-b/session.lock
+server-b/usercache.json
+server-b/eula.txt
+server-b/ops.json
+server-b/banned-players.json
+server-b/banned-ips.json
+server-b/whitelist.json
+
+# Server/Fabric loader jars (downloaded, not versioned — see VERSION_LOCK.md)
+server-a/*.jar
+server-b/*.jar
+server-a/mods/*.jar
+server-b/mods/*.jar
+server-a/libraries/
+server-b/libraries/
+server-a/.fabric/
+server-b/.fabric/
+server-a/versions/
+server-b/versions/
+server-a/fabric-server-launcher.properties
+server-b/fabric-server-launcher.properties
+
+# server.properties contains rcon.password in plaintext — never versioned.
+# Use server-a/server.properties.template / server-b/server.properties.template instead.
+server-a/server.properties
+server-b/server.properties
+
+# --- Velocity proxy runtime ---
+proxy/velocity/*.jar
+proxy/velocity/logs/
+proxy/velocity/lang/
+proxy/velocity/plugins/
+proxy/velocity/forwarding.secret
+# Ad-hoc boot logs from manually launching Velocity detached (Start-Process redirect) during
+# live testing/debugging sessions - not a permanent tooling output path, never versioned.
+proxy/velocity/*.log.err
+# velocity.toml itself has no embedded secret (forwarding-secret-file is a separate reference),
+# but it's still gitignored for consistency with the real-config/*.template pattern used
+# everywhere else in this repo. Use velocity.toml.template (versioned) instead.
+proxy/velocity/velocity.toml
+
+# FabricProxy-Lite.toml embeds the Velocity forwarding secret in plaintext — never versioned.
+# Use server-a/config/FabricProxy-Lite.toml.template / server-b/... instead.
+server-a/config/FabricProxy-Lite.toml
+server-b/config/FabricProxy-Lite.toml
+
+# --- Logs (repo-wide) ---
+logs/
+*.log
+crash-reports/
+
+# --- Session / cache / temp ---
+*.lock
+usercache.json
+session.lock
+.DS_Store
+Thumbs.db
+
+# --- Client modpack downloads ---
+client/fabulously-optimized/*.mrpack
+client/fabulously-optimized/downloads/
+
+# --- HardcoreHud client jar (FASE 9) - built artifact, reproducible via gradlew build, same as
+# the server-side deploy under server-a/mods and server-b/mods. Source is versioned. ---
+client/hardcore-hud/*.jar
+
+# --- Velocity plugin (HardcoreCoordinator) build artifacts ---
+# Source is versioned; build/.gradle caches and the built jar are reproducible via
+# scripts/windows/build-hardcore-coordinator.ps1 (gradlew build) and never committed.
+# The deployed copy under proxy/velocity/plugins/ is already covered by the broader
+# proxy/velocity/plugins/ ignore rule above.
+velocity-plugin/*/build/
+velocity-plugin/*/.gradle/
+velocity-plugin/*/bin/
+
+# --- Fabric mod (HardcoreDeathSignal) build artifacts ---
+# Source is versioned; the Loom cache (huge - includes decompiled/remapped Minecraft) and the
+# built jar are reproducible via gradlew build and never committed. Deployed copies under
+# server-a/mods and server-b/mods are already covered by the *.jar rules above.
+fabric-mods/*/build/
+fabric-mods/*/.gradle/
+fabric-mods/*/bin/
+fabric-mods/*/run/
+
+# --- Death event spool (FASE 7) - runtime data, never versioned ---
+runtime/death-events/
+
+# --- Incompatible mods set aside during a modset audit (FASE 8) - not deleted, not versioned ---
+runtime/modset-quarantine/
+
+# --- Editor / OS ---
+.vscode/
+.idea/
+*.swp
+
+# --- Public repo hygiene: never publish local tooling, scratch work or private history ---
+.claude/
+scratch/
+runtime/
+*.log.err
+proxy/velocity/.console_history
+*.console_history
+
+# Tool Level Up patch: the original mod is "All Rights Reserved" - its decompiled/patched code
+# and rebuilt jars are for private use on this server only, never redistributed.
+mod-patches/

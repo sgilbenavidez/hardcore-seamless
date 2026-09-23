@@ -1,0 +1,37 @@
+#Minecraft server properties - Server B - FASE 2 baseline (TEMPLATE, no secrets)
+#The real server-b/server.properties is generated locally and gitignored because it embeds
+#rcon.password. Copy this file to server.properties and fill rcon.password with a locally
+#generated secret (distinct from Server A's) before starting.
+server-port=25567
+online-mode=false
+hardcore=false
+level-seed=
+enable-rcon=true
+rcon.port=25577
+rcon.password=CHANGE_ME_LOCAL_SECRET_NEVER_COMMIT
+broadcast-rcon-to-ops=false
+enable-command-block=false
+motd=HardcoreSeamless - Server B (FASE 2 baseline)
+white-list=true
+enforce-whitelist=true
+gamemode=survival
+difficulty=hard
+max-players=20
+view-distance=10
+simulation-distance=10
+spawn-protection=0
+# Requested: only half the connected players need to be in bed to skip the night, instead of
+# vanilla's default 100% (everyone). Must match server-a so a switch never changes this rule.
+players-sleeping-percentage=30
+# FASE 8: Velocity runs online-mode=false (see proxy/velocity/velocity.toml.template) so
+# non-premium clients can join. A signed chat key requires a real Mojang session, which a
+# cracked client can never present - leaving this on would reject exactly those players.
+enforce-secure-profile=false
+# FASE 9: hardcore=false (above) is intentional - HardcoreDeathSignal/HardcoreCoordinator are the
+# sole authority for what "hardcore" means here (a shared run lost on any death, not vanilla's
+# per-player-goes-spectator model). This resource pack only makes normal hearts LOOK like the
+# hardcore heart texture - verified checksums in VERSION_LOCK.md "Hallazgos de FASE 9". Must be
+# identical on A and B (same URL, same hash) so an A<->B switch never re-prompts the client.
+resource-pack=https://raw.githubusercontent.com/sgilbenavidez/minecraft-hardcore-assets/main/HardcoreVisuals-1.20.1.zip
+resource-pack-sha1=3891902d19dbf33b877b6192af810219fd44f022
+require-resource-pack=false

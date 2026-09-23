@@ -1,0 +1,21 @@
+# HardcoreCoordinator configuration TEMPLATE.
+#
+# The real, live config lives at proxy/velocity/plugins/hardcore-coordinator/config.properties
+# (gitignored along with the rest of proxy/velocity/plugins/ - see .gitignore). The plugin also
+# self-creates that file with these same defaults on first boot if it's missing, so this template
+# is documentation more than a strict requirement to copy by hand.
+#
+# activeServer/standbyServer: initial ACTIVE/STANDBY state, applied once when Velocity starts.
+# There is no runtime persistence of state changes in this phase - every proxy restart resets to
+# these values (documented, intentional - see FASE 4 spec section 21).
+activeServer=server-a
+standbyServer=server-b
+
+# Comma-separated usernames allowed to run /hs switch. The Velocity console always has permission
+# regardless of this list. This is a minimal stand-in for a real permission plugin (LuckPerms
+# etc.), appropriate for this phase - not meant to be the long-term permission mechanism.
+admins=
+
+# Maximum time (seconds) a single switch operation may take before individual player transfers
+# are considered failed and the operation reports FAILED/PARTIAL_FAILURE.
+switchTimeoutSeconds=15

@@ -1,0 +1,8 @@
+{
+  "houseEdge": 0.9,
+  "minChance": 0.001,
+  "maxChance": 0.9,
+  "spinDurationTicks": 70,
+  "valueOverrides": [],
+  "blacklist": []
+}
